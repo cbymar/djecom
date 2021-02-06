@@ -133,3 +133,8 @@ ignoreland/
 ./idea
 .idea/
 templates/
+static_cdn/
+static_my_proj/
+media/
+media_root/
+static_root/

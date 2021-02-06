@@ -14,6 +14,8 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(BASE_DIR)
+print(BASE_DIR.parent)
 
 
 # Quick-start development settings - unsuitable for production
@@ -119,3 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+if DEBUG:
+    MEDIA_URL = '/media/'
+    STATIC_ROOT = os.path.join(BASE_DIR.parent, 'static_cdn', 'static_root')
+    MEDIA_ROOT = os.path.join(BASE_DIR.parent,  'static_cdn', 'media_root')
+    STATICFILES_DIRS = [
+        BASE_DIR / "static_my_proj"
+    ]
+
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, "templates"), )
