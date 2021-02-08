@@ -28,6 +28,9 @@ class ProductManager(models.Manager):
     """
     We can override methods in this to give bespoke behavior
     """
+    def featured(self):
+        return self.get_queryset().filter(featured=True)
+
     def get_by_id(self, id):
         qs = self.get_queryset.filter(id=id)
         if qs.count() == 1:
