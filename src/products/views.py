@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
 from django.http import Http404
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from .models import Product
@@ -42,6 +42,7 @@ def product_list_view(request):
 class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
     template_name = "products/detail.html"
+
     def get_object(self, *args, **kwargs):
         request = self.request
         slug = self.kwargs.get("slug")

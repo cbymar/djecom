@@ -1,8 +1,11 @@
-from django.db import models
 import os
 import random
-from django.db.models.signals import pre_save, post_save
+
+from django.db import models
+from django.db.models.signals import pre_save
+
 from .utils import unique_slug_generator
+
 
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -27,6 +30,7 @@ def upload_image_path(instance, filename):
 
 class ProductQuerySet(models.query.QuerySet):
     """Custom queryset"""
+
     def active(self):
         return self.filter(active=True)
 
@@ -39,6 +43,7 @@ class ProductManager(models.Manager):
     We can override methods in this to give bespoke behavior
     Can reference custom querysets and their respective methods
     """
+
     def get_queryset(self):
         return ProductQuerySet(self.model, using=self._db)
 
@@ -67,8 +72,11 @@ class Product(models.Model):
     objects = ProductManager()
 
     def get_absolute_url(self):
-        """Improve by adding reverse() call"""
-        return "/products/{slug}/".format(slug=self.slug)
+        """
+        Improve by adding reverse() call: assumes where the view is.
+        """
+        # return "/products/{slug}/".format(slug=self.slug)
+        return reverse("detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
