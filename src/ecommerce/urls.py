@@ -28,7 +28,7 @@ urlpatterns = [
     path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
-    path('products/', include("products.urls")),
+    path('products/', include("products.urls", namespace="products")),
     # path('products', ProductListView.as_view()),
     # path('products/<int:pk>/', ProductDetailView.as_view()),
     # path('products/<slug:slug>/', ProductDetailSlugView.as_view()),
