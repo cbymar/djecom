@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from .views import (
     ProductListView,
     # product_list_view,
-    ProductDetailView,
+    # ProductDetailView,
     ProductDetailSlugView,
     # product_detail_view,
     # ProductFeaturedListView,
@@ -13,6 +13,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path('products', ProductListView.as_view()),
-    path('products/<slug:slug>/', ProductDetailSlugView.as_view()),
+    path('', ProductListView.as_view()),
+    path('<slug:slug>/', ProductDetailSlugView.as_view()),
 ]
