@@ -25,9 +25,10 @@ def about_page(request):
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
     context = {
-        "title": "This is a contact form",
+        "title": "Contact us",
         "content": "Welcome to the contact page",
-        "form": contact_form
+        "form": contact_form,
+        # "brand": "New Brand Name, like Nike",
     }
     if contact_form.is_valid():
         print(contact_form.cleaned_data)
