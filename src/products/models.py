@@ -99,9 +99,9 @@ class Product(models.Model):
             return self.image.url
 
 
-def product_pre_stave_receiver(sender, instance, *args, **kwargs):
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(product_pre_stave_receiver, sender=Product)
+pre_save.connect(product_pre_save_receiver, sender=Product)
