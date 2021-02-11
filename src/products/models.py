@@ -99,6 +99,10 @@ class Product(models.Model):
         if self.image and hasattr(self.image, "url"):
             return self.image.url
 
+    @property
+    def name(self):
+        return self.title
+
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:

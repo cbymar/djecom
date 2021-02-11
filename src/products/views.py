@@ -50,7 +50,6 @@ class ProductDetailSlugView(DetailView):
         context['cart'] = cart_obj
         return context
 
-
     def get_object(self, *args, **kwargs):
         request = self.request
         slug = self.kwargs.get("slug")

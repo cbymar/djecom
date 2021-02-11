@@ -10,12 +10,14 @@ class CartManager(models.Manager):
 
     def new_or_get(self, request):
         cart_id = request.session.get("cart_id", None)
+        print(cart_id)
         qs = self.get_queryset().filter(id=cart_id)
-        if qs.count == 1:
+        if qs.count() == 1:
             new_obj = False
             print("Cart ID exists")
             cart_obj = qs.first()
-            if request.user.is_authenticated() and cart_obj.user is None:
+            print(cart_obj.user)
+            if request.user.is_authenticated and cart_obj.user is None:
                 cart_obj.user = request.user
                 cart_obj.save()
         else:
