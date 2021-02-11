@@ -53,12 +53,16 @@ def pre_save_cart_receiver(sender, instance, action, *args, **kwargs):
     Cart model relevant functions to run upon (but before) saving
     """
     print(action)
-    products = instance.products.all()
-    total = 0
-    for x in products:
-        total += x.price
-    print(total)
-    instance.total = total
+    if action in ["post_add", "post_remove", "post_clear"]:
+        print(instance.products.all())
+        print(instance.total)
+        products = instance.products.all()
+        total = 0
+        for x in products:
+            total += x.price
+        print(total)
+        instance.total = total
+        instance.save()
 
 
 m2m_changed.connect(pre_save_cart_receiver, sender=Cart.products.through)
