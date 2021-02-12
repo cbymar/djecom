@@ -57,7 +57,7 @@ class ProductDetailSlugView(DetailView):
             instance = Product.objects.get(slug=slug, active=True)
         except Product.DoesNotExist:
             raise Http404("Not found...")
-        except ProductMultipleObjectsReturned:
+        except Product.MultipleObjectsReturned:
             qs = Product.objects.filter(slug=slug, active=True)
             instance = qs.first()
         except:

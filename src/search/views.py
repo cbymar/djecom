@@ -2,8 +2,8 @@
 from django.apps import apps
 from django.views.generic import ListView
 from django.db.models import Q
+from products.models import Product
 
-Product = apps.get_model("products", "Product")
 
 
 class SearchProductView(ListView):

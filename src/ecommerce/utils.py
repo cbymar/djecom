@@ -7,6 +7,15 @@ def random_string_generator(size=10, chars=string.ascii_lowercase + string.digit
     return ''.join(random.choice(chars) for _ in range(size))
 
 
+def order_id_generator(instance):
+    order_id_new = random_string_generator(12).upper()
+    Klass = instance.__class__
+    id_exists = Klass.objects.filter(order_id=order_id_new).exists()
+    if id_exists:
+        return order_id_generator(instance)
+    return order_id_new
+
+
 def unique_slug_generator(instance, new_slug=None):
     """
     This is for a Django project and it assumes your instance
